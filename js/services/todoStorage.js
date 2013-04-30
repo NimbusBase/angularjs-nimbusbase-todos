@@ -16,4 +16,4 @@ todomvc.factory('todoStorage', function () {
 			localStorage.setItem(STORAGE_ID, JSON.stringify(todos));
 		}
 	};
-});
+}).factory('nimbusStorage', Nimbus.angularService);
