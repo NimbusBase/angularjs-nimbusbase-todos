@@ -15,6 +15,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, nimbusStorag
 		init();
 	}
 	function init(){
+		$('div.cover').fadeOut();
 		store = nimbusStorage('todo', ['title', 'completed'], function(){
 			fetchAll();
 		});

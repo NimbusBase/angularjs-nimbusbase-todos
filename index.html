@@ -6,8 +6,65 @@
 		<title>AngularJS • TodoMVC</title>
 		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
 		<style>[ng-cloak] {display: none}</style>
+		<style>
+		div.cover{
+			background: url(bg.jpg) no-repeat center center fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			text-align: center;
+			z-index: 99999;
+			text-shadow: 2px 2px grey;
+		}
+		.btn {
+			display: inline-block;
+			padding: 4px 14px;
+			margin-bottom: 0;
+			font-size: 14px;
+			line-height: 20px;
+			color: #333;
+			text-align: center;
+			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+			vertical-align: middle;
+			cursor: pointer;
+			background-color: whiteSmoke;
+			background-image: -webkit-gradient(linear,0 0,0 100%,from(white),to(#E6E6E6));
+			background-image: -webkit-linear-gradient(top,white,#E6E6E6);
+			background-image: -o-linear-gradient(top,white,#E6E6E6);
+			background-image: linear-gradient(to bottom,white,#E6E6E6);
+			background-image: -moz-linear-gradient(top,white,#E6E6E6);
+			background-repeat: repeat-x;
+			border: 1px solid #BBB;
+			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+			border-color: #E6E6E6 #E6E6E6 #BFBFBF;
+			border-bottom-color: #A2A2A2;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+			filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+			-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+			-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+		}
+		</style>
 	</head>
 	<body>
+		<div id="loading" class="cover">
+
+			<h1 style="font-size: 80px; color: #eee; margin-top: 100px;">todos</h1>
+			
+			<p style="width: 350px; margin: auto; color: #eee; font-size: 20px; line-height: 1.2; margin-bottom: 15px;">This todo list is a implementation of todoMVC with NimbusBase on the Backbone.js framework. <a href="https://github.com/CarlLee/angularjs-nimbusbase-todos" target="_blank" style="color: #005580;">View The Code</a></p>
+			<a class="btn btn-info btn-large" style="border-radius: 20px; box-shadow: 0 0 7px #555;" onclick="Nimbus.Auth.authorize('Dropbox')">Login With Dropbox</a>
+			<a class="btn btn-info btn-large" style="border-radius: 20px; box-shadow: 0 0 7px #555;" onclick="Nimbus.Auth.authorize('GDrive')">Login With GDrive</a>
+				
+		</div>
 		<section id="todoapp" ng-controller="TodoCtrl">
 			<header id="header">
 				<h1>todos</h1>
@@ -59,6 +116,7 @@
 			</p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://nimbusbase.com/static/nimbus.min.js"></script>
 		<script src="js/services/nimbusStorage.js"></script>
 		<script src="bower_components/angular/angular.js"></script>
