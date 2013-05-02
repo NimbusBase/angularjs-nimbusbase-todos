@@ -6,64 +6,80 @@
 		<title>AngularJS • TodoMVC</title>
 		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
 		<style>[ng-cloak] {display: none}</style>
-		<style>
-		div.cover{
-			background: url(bg.jpg) no-repeat center center fixed;
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-			position: fixed;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			text-align: center;
-			z-index: 99999;
-			text-shadow: 2px 2px grey;
-		}
-		.btn {
-			display: inline-block;
-			padding: 4px 14px;
-			margin-bottom: 0;
-			font-size: 14px;
-			line-height: 20px;
-			color: #333;
-			text-align: center;
-			text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-			vertical-align: middle;
-			cursor: pointer;
-			background-color: whiteSmoke;
-			background-image: -webkit-gradient(linear,0 0,0 100%,from(white),to(#E6E6E6));
-			background-image: -webkit-linear-gradient(top,white,#E6E6E6);
-			background-image: -o-linear-gradient(top,white,#E6E6E6);
-			background-image: linear-gradient(to bottom,white,#E6E6E6);
-			background-image: -moz-linear-gradient(top,white,#E6E6E6);
-			background-repeat: repeat-x;
-			border: 1px solid #BBB;
-			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-			border-color: #E6E6E6 #E6E6E6 #BFBFBF;
-			border-bottom-color: #A2A2A2;
-			-webkit-border-radius: 4px;
-			-moz-border-radius: 4px;
-			border-radius: 4px;
-			filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
-			filter: progid:dximagetransform.microsoft.gradient(enabled=false);
-			-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-			-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
-			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-		}
+		<style type="text/css">
+			#name {
+				text-align: center;
+				color: #fff;
+				font-size: 3.5em;
+			}
+			#powered {
+				margin: 0px auto;
+				display: block;
+				width: 250px;
+				margin-top: 5px;
+			}
+			.s_icon {
+				height: 18px;
+				margin-right: 7px;
+				display: inline;
+			}
+			.content, .bar-title {
+				transition: all 0.10s ease-in-out;
+				-webkit-transition: all 0.10s ease-in-out;
+				border-left: 1px solid #0f1114;
+			}
+			.button-block{
+				display: block;
+				padding: 11px 0 13px;
+				margin-bottom: 10px;
+				font-size: 16px;
+				position: relative;
+				padding: 4px 5px;
+				margin: 0;
+				font-weight: bold;
+				line-height: 18px;
+				color: #333;
+				text-align: center;
+				text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+				vertical-align: top;
+				cursor: pointer;
+				background-color: #f8f8f8;
+				background-image: -webkit-linear-gradient(top, #f8f8f8 0, #d4d4d4 100%);
+				background-image: linear-gradient(to bottom, #f8f8f8 0, #d4d4d4 100%);
+				border: 1px solid rgba(0, 0, 0, .3);
+				border-radius: 3px;
+				box-shadow: inset 0 1px 1px rgba(255, 255, 255, .4), 0 1px 2px rgba(0, 0, 0, .05);
+			}
+
+			.cover{
+				background: url(back.png) no-repeat center center fixed;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				text-align: center;
+				z-index: 99999;
+			}
 		</style>
 	</head>
 	<body>
-		<div id="loading" class="cover">
-
-			<h1 style="font-size: 80px; color: #eee; margin-top: 100px;">todos</h1>
-			<img src="nimbusbase_2_powered_by.png" style="width: 250px; margin:20px;" alt="">
-			<p style="width: 350px; margin: auto; color: #eee; font-size: 20px; line-height: 1.2; margin-bottom: 15px;">This todo list is a implementation of todoMVC with NimbusBase on the Angular.js framework. <a href="https://github.com/CarlLee/angularjs-nimbusbase-todos" target="_blank" style="color: navajowhite;">View The Code</a></p>
-			<a class="btn btn-info btn-large" style="border-radius: 20px; box-shadow: 0 0 7px #555;" onclick="Nimbus.Auth.authorize('Dropbox')">Login With Dropbox</a>
-			<a class="btn btn-info btn-large" style="border-radius: 20px; box-shadow: 0 0 7px #555;" onclick="Nimbus.Auth.authorize('GDrive')">Login With GDrive</a>
-				
+		<div class="cover">
+			<div class="content">
+				<div style="position: absolute; top: 50px; width: 94%; padding: 3%;">
+					<h1 id="name">todos</h1>
+					<img id="powered" src="nimbusbase_2_powered_by.png">
+					<p style="width: 350px; margin: auto; color: #eee; font-size: 20px; line-height: 1.2; margin-top: 15px; margin-bottom: 15px;">This todo list is a implementation of todoMVC with NimbusBase on the Angular.js framework. <a href="https://github.com/CarlLee/angularjs-nimbusbase-todos" target="_blank" style="color: navajowhite;">View The Code</a></p>
+				</div>
+				<div style="position: absolute; bottom: 0px; width: 94%; padding: 3%;">
+					<a class="button-block" style="padding-top: 14px;" onclick="Nimbus.Auth.authorize('Dropbox')"><img class="s_icon" src="dropbox_icon.png">Login with Dropbox</a>
+					<a class="button-block" style="padding-top: 14px;" onclick="Nimbus.Auth.authorize('GDrive')"><img class="s_icon" src="google_drive_icon.png">Login with Google Drive</a>
+				</div>
+			</div>
 		</div>
 		<section id="todoapp" ng-controller="TodoCtrl">
 			<header id="header">
