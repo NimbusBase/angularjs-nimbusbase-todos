@@ -6,9 +6,11 @@
  * - retrieves and persists the model via the todoStorage service
  * - exposes the model to the template and provides event handlers
  */
-todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, nimbusStorage, filterFilter) {
+todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, nimbusbaseStorage, filterFilter) {
+	var MODEL_NAME = 'todo';
 	var store;
 	var todos = $scope.todos = [];
+	$scope.watcher = nimbusbaseStorage.makeWatcher(MODEL_NAME);
 
 	Nimbus.Auth.authorized_callback = init;
 	if(Nimbus.Auth.authorized()){
@@ -16,25 +18,23 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, nimbusStorag
 	}
 	function init(){
 		$('div.cover').fadeOut();
-		store = nimbusStorage('todo', ['title', 'completed'], function(){
-			fetchAll();
-		});
-	}
-	function fetchAll(){
-		todos = $scope.todos = store.all();
+		store = nimbusbaseStorage.setup(MODEL_NAME, ['title', 'completed'], function(){
+		var data = store.all();
+		for (var i = 0; i < data.length; i++) {
+			todos.push(data[i]);
+		};
 		$scope.$apply();
+		});
 	}
 
 	$scope.newTodo = '';
 	$scope.editedTodo = null;
 
-	$scope.$watch('todos', function () {
+	$scope.$watch('watcher()', function () {
 		$scope.remainingCount = filterFilter(todos, {completed: false}).length;
 		$scope.completedCount = todos.length - $scope.remainingCount;
 		$scope.allChecked = !$scope.remainingCount;
-		console.log('todos changed');
-		console.log(JSON.stringify(todos));
-	}, false);
+	}, true);
 
 	if ($location.path() === '') {
 		$location.path('/');
@@ -56,7 +56,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, nimbusStorag
 			title: $scope.newTodo,
 			completed: false
 		});
-		fetchAll();
+		todos.push(todo);
 		$scope.newTodo = '';
 	};
 
@@ -74,16 +74,21 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, nimbusStorag
 
 	$scope.removeTodo = function (todo) {
 		todo.destroy();
-		fetchAll();
+		var index = todos.indexOf(todo);
+		if(index >= 0){
+			todos.splice(index, 1);
+		}
 	};
 
 	$scope.clearCompletedTodos = function () {
-		$scope.todos = todos = todos.forEach(function (todo) {
+		$scope.todos = todos;
+		for(var i = 0; i < todos.length; i++){
+			var todo = todos[i];
 			if(todo.completed){
 				todo.destroy();
+				todos.splice(i--, 1);
 			}
-		});
-		fetchAll();
+		}
 	};
 
 	$scope.markAll = function (completed) {
