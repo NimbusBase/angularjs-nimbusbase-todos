@@ -102,4 +102,9 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, nimbusbaseSt
 		todo.completed = !todo.completed;
 		todo.updateAttributes(todo.attributes());
 	}
+
+	$scope.logout = function(){
+		Nimbus.Auth.logout();
+		window.location.reload();
+	}
 });

@@ -68,7 +68,7 @@ body {
 
 #todoapp h1 {
 	position: absolute;
-	top: -120px;
+	top: -130px;
 	width: 100%;
 	font-size: 70px;
 	font-weight: bold;
@@ -81,6 +81,19 @@ body {
 	-ms-text-rendering: optimizeLegibility;
 	-o-text-rendering: optimizeLegibility;
 	text-rendering: optimizeLegibility;
+}
+
+#header a{
+	display: block;
+	text-align: center;
+	width: 5em;
+	line-height: 25px;
+	position: absolute;
+	top: -120px;
+	right: 0px;
+	text-decoration: none;
+	padding: 0px;
+	font-size: 12px;
 }
 
 #header {
