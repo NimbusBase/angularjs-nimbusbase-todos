@@ -2,6 +2,6 @@
 'use strict';
 
 /**
- * Services that persists and retrieves TODOs from localStorage
+ * Services stores on top of NimbusBase
  */
 todomvc.factory('nimbusbaseStorage', Nimbus.angularService);
