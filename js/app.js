@@ -18,6 +18,7 @@ var sync_object = {
 		"key": "q5yx30gr8mcvq4f",
 		"secret": "qy64qphr70lwui5",
 		"app_name": "todomvc_app"
-	}
+	},
+    "synchronous": true
 };
 Nimbus.Auth.setup(sync_object);
