@@ -12,7 +12,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, nimbusbaseSt
 	var todos = $scope.todos = [];
 	$scope.watcher = nimbusbaseStorage.makeWatcher(MODEL_NAME);
 
-	Nimbus.Auth.authorized_callback = init;
+	Nimbus.Auth.app_ready_func = init;
 	if(Nimbus.Auth.authorized()){
 		init();
 	}
